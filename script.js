@@ -50,6 +50,19 @@ const healthData = {
   }
 };
 
+const categoryDescriptions = {
+  "Cardiovascular": "Heart health and blood pressure. These parameters measure how well your heart is working and whether blood pressure is in a healthy range.",
+  "Cholesterol & Lipids": "Blood fats that affect heart health. LDL (bad) should be low, HDL (good) should be high. Total cholesterol and triglycerides should also be controlled.",
+  "Blood Sugar & Metabolism": "How your body processes sugar. Fasting blood sugar shows if you're at risk for diabetes. BMI indicates if weight is healthy for your height.",
+  "Thyroid": "Thyroid hormone production. TSH controls metabolism. High TSH may mean the thyroid isn't working enough; low TSH may mean it's overactive.",
+  "Liver & Kidney": "Organ function and waste filtering. These tests check if your liver and kidneys are processing toxins and maintaining healthy levels properly.",
+  "Blood Counts": "Red and white blood cells, and platelets. These show if you have anemia, infections, or clotting issues. Critical for immune function and oxygen delivery.",
+  "Iron & Minerals": "Essential minerals for bones, muscles, and nerves. Low iron causes fatigue. Calcium and magnesium are vital for bone health and muscle function.",
+  "Electrolytes": "Salts that regulate fluid balance, nerve signals, and heart rhythm. Potassium and sodium are critical—imbalances can be serious.",
+  "Vitamins": "Essential nutrients for energy, immunity, and bone health. B12 deficiency causes fatigue. Vitamin D is crucial but many people are deficient.",
+  "Urine": "Checks for kidney problems, diabetes, or urinary tract issues. Should have no protein or glucose—their presence indicates a problem."
+};
+
 function convertToKg(weight, unit) {
   return unit === "lbs" ? weight / 2.20462 : weight;
 }
@@ -118,8 +131,12 @@ function populateCategories() {
       itemsDiv.appendChild(itemDiv);
     });
 
-    headerDiv.addEventListener("click", () => {
-      categoryDiv.classList.toggle("open");
+    headerDiv.addEventListener("click", (e) => {
+      if (e.target.closest(".toggle-icon")) {
+        categoryDiv.classList.toggle("open");
+      } else {
+        openCategoryModal(category);
+      }
     });
 
     categoryDiv.appendChild(headerDiv);
@@ -181,5 +198,28 @@ document.getElementById("weight").addEventListener("change", updateSummary);
 document.getElementById("height").addEventListener("change", updateSummary);
 document.getElementById("weightUnit").addEventListener("change", updateSummary);
 document.getElementById("heightUnit").addEventListener("change", updateSummary);
+
+function openCategoryModal(category) {
+  const modal = document.getElementById("categoryModal");
+  const title = document.getElementById("modalTitle");
+  const description = document.getElementById("modalDescription");
+
+  title.textContent = category;
+  description.textContent = categoryDescriptions[category] || "Information about this health parameter category.";
+
+  modal.classList.add("show");
+}
+
+function closeModal() {
+  const modal = document.getElementById("categoryModal");
+  modal.classList.remove("show");
+}
+
+document.querySelector(".close").addEventListener("click", closeModal);
+document.getElementById("categoryModal").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("categoryModal")) {
+    closeModal();
+  }
+});
 
 populateCategories();

@@ -46,6 +46,7 @@
                 <option value="lbs">lbs</option>
               </select>
             </div>
+            <p class="unit-hint">1 kg = 2.2 lbs</p>
           </div>
           <div class="row">
             <label>Height</label>
@@ -56,6 +57,7 @@
                 <option value="in">inches</option>
               </select>
             </div>
+            <p class="unit-hint">1 inch = 2.54 cm (12 inches = 1 foot)</p>
           </div>
           <div class="actions">
             <button type="button" id="calcBtn">Show Health Levels</button>
@@ -93,6 +95,15 @@
           <!-- Categories will be populated by JavaScript -->
         </div>
       </section>
+
+      <!-- Modal Popup -->
+      <div id="categoryModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3 id="modalTitle"></h3>
+          <p id="modalDescription"></p>
+        </div>
+      </div>
 
       <footer class="card footer-card">
         <p><strong>Medical Disclaimer:</strong> This tool provides generalized health parameter ranges based on commonly accepted medical guidelines and the information you entered (age, gender, weight, height). These ranges are NOT personalized to your unique medical history, medications, conditions, or individual physiology.</p>
