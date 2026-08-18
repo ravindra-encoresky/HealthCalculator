@@ -131,10 +131,15 @@ function populateCategories() {
       itemsDiv.appendChild(itemDiv);
     });
 
+    const toggleIcon = headerDiv.querySelector(".toggle-icon");
+
+    toggleIcon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      categoryDiv.classList.toggle("open");
+    });
+
     headerDiv.addEventListener("click", (e) => {
-      if (e.target.closest(".toggle-icon")) {
-        categoryDiv.classList.toggle("open");
-      } else {
+      if (e.target !== toggleIcon) {
         openCategoryModal(category);
       }
     });
