@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Health Levels — Quick Check</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="disclaimer-banner">
+      <div class="disclaimer-icon">⚠️</div>
+      <div class="disclaimer-text">
+        <strong>Disclaimer:</strong> These are generalized health parameter ranges based on age, gender, weight, and height. Individual healthy ranges vary significantly based on personal medical history, medications, genetics, and other factors. <strong>This is not medical advice.</strong> Always consult your doctor, specialist, or healthcare provider before making any health decisions. Use this as a general reference when reviewing lab reports, not as a diagnostic tool.
+      </div>
+    </div>
+
+    <header>
+      <h1>Health Levels</h1>
+      <p class="tag">Enter basic info and get an easy-to-read table of typical healthy ranges based on your profile.</p>
+    </header>
+
+    <main>
+      <section class="card form-card">
+        <h2>Inputs</h2>
+        <form id="inputForm">
+          <div class="row">
+            <label>Age</label>
+            <input type="number" id="age" min="0" max="120" value="30">
+          </div>
+          <div class="row">
+            <label>Gender</label>
+            <select id="gender">
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label>Weight</label>
+            <div class="input-with-unit">
+              <input type="number" id="weight" min="10" max="500" step="0.1" value="70">
+              <select id="weightUnit">
+                <option value="kg">kg</option>
+                <option value="lbs">lbs</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label>Height</label>
+            <div class="input-with-unit">
+              <input type="number" id="height" min="30" max="250" step="0.1" value="170">
+              <select id="heightUnit">
+                <option value="cm">cm</option>
+                <option value="in">inches</option>
+              </select>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" id="calcBtn">Show Health Levels</button>
+            <button type="button" id="resetBtn" class="muted">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card summary-card" id="summary" aria-live="polite">
+        <h2>Summary</h2>
+        <div class="summary-grid">
+          <div>
+            <span class="k">BMI</span>
+            <div id="bmiVal" class="v">—</div>
+          </div>
+          <div>
+            <span class="k">Category</span>
+            <div id="bmiCat" class="v">—</div>
+          </div>
+          <div>
+            <span class="k">Age</span>
+            <div id="ageVal" class="v">—</div>
+          </div>
+          <div>
+            <span class="k">Heart Risk</span>
+            <div id="heartRisk" class="v">—</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <h2>Health Parameters</h2>
+        <p class="muted small"><strong>Below are the healthy/normal ranges for each parameter.</strong> If your lab results fall <strong>outside these ranges</strong>, discuss with your doctor. Click any category to expand.</p>
+        <div id="paramsContainer" class="params-container">
+          <!-- Categories will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <footer class="card footer-card">
+        <p><strong>Medical Disclaimer:</strong> This tool provides generalized health parameter ranges based on commonly accepted medical guidelines and the information you entered (age, gender, weight, height). These ranges are NOT personalized to your unique medical history, medications, conditions, or individual physiology.</p>
+        <p>Always consult with a qualified healthcare provider (doctor, nurse, specialist) before interpreting lab results or making health decisions. If you have concerns about any health parameter, seek professional medical advice immediately.</p>
+        <p style="font-size: 12px; opacity: 0.8;">Use this reference tool to better understand what doctors discuss with you—not as a substitute for professional medical evaluation.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
