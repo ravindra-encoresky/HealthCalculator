@@ -166,18 +166,15 @@ function updateSummary() {
     document.getElementById("bmiVal").textContent = "—";
     document.getElementById("bmiCat").textContent = "—";
     document.getElementById("ageVal").textContent = "—";
-    document.getElementById("heartRisk").textContent = "—";
     return;
   }
 
   const bmi = calculateBMI(weight, height);
   const bmiData = getBMICategory(bmi);
-  const risk = getHeartRisk(age, gender, weight, height);
 
   document.getElementById("bmiVal").textContent = bmi;
   document.getElementById("bmiCat").textContent = bmiData.category;
   document.getElementById("ageVal").textContent = `${age} years`;
-  document.getElementById("heartRisk").textContent = `${risk.percent} (${risk.category})`;
 
   populateCategories();
 }
